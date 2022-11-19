@@ -44,7 +44,7 @@ public class TestProject implements Closeable {
         final File dir = new File("test-projects/random-files").getAbsoluteFile();
         assertTrue(dir.exists(), dir + " doesn't exist");
         assertTrue(dir.isDirectory(), dir + " isn't a directory");
-        final File tempFile = File.createTempFile("testproject", "dir");
+        final File tempFile = Files.createTempFile("testproject", "dir").toFile();
         final File tempDir = new File(tempFile.getAbsolutePath() + "-dir");
         FileUtils.copyDirectory(dir, tempDir);
         Files.delete(tempFile.toPath());
@@ -66,7 +66,7 @@ public class TestProject implements Closeable {
      * @throws IOException
      */
     public static TestProject empty() throws IOException {
-        final File tempFile = File.createTempFile("testproject", "dir");
+        final File tempFile = Files.createTempFile("testproject", "dir").toFile();
         final File tempDir = new File(tempFile.getAbsolutePath() + "-dir");
         Files.createDirectories(tempDir.toPath());
         Files.delete(tempFile.toPath());
